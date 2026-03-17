@@ -29,7 +29,13 @@ module if1_if2_reg (
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset || flush) begin
+        if (reset) begin
+            if2_pc             <= 32'b0;
+            if2_pc_plus_4      <= 32'b0;
+            if2_branch_target  <= 32'b0;
+            if2_branch_predict <= 1'b0;
+            if2_valid          <= 1'b0;
+        end else if (flush) begin
             if2_pc             <= 32'b0;
             if2_pc_plus_4      <= 32'b0;
             if2_branch_target  <= 32'b0;

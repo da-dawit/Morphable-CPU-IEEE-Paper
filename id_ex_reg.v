@@ -47,7 +47,29 @@ module id_ex_reg (
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset || flush) begin
+        if (reset) begin
+            ex_pc           <= 32'b0;
+            ex_pc_plus_4    <= 32'b0;
+            ex_rd1          <= 32'b0;
+            ex_rd2          <= 32'b0;
+            ex_imm          <= 32'b0;
+            ex_rs1          <= 5'b0;
+            ex_rs2          <= 5'b0;
+            ex_rd           <= 5'b0;
+            ex_alu_sel      <= 4'b0;
+            ex_a_sel        <= 1'b0;
+            ex_b_sel        <= 1'b0;
+            ex_mem_wr       <= 1'b0;
+            ex_mem_read     <= 1'b0;
+            ex_reg_write_en <= 1'b0;
+            ex_wb_sel       <= 2'b0;
+            ex_pc_sel       <= 1'b0;
+            ex_br_un        <= 1'b0;
+            ex_funct3       <= 3'b0;
+            ex_is_branch    <= 1'b0;
+            ex_is_jump      <= 1'b0;
+        end
+        else if (flush) begin
             ex_pc           <= 32'b0;
             ex_pc_plus_4    <= 32'b0;
             ex_rd1          <= 32'b0;

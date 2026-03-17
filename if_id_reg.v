@@ -13,7 +13,12 @@ module if_id_reg (
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset || flush) begin
+        if (reset) begin
+            id_pc       <= 32'b0;
+            id_pc_plus_4 <= 32'b0;
+            id_inst     <= 32'h00000013; // NOP
+        end
+        else if (flush) begin
             id_pc       <= 32'b0;
             id_pc_plus_4 <= 32'b0;
             id_inst     <= 32'h00000013; // NOP

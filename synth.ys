@@ -1,0 +1,9 @@
+read_verilog alu.v bc.v branch_resolution.v control_pipeline.v cpi_monitor.v cpu_morphable_top.v dmem.v ex1_ex2_reg.v ex_mem_reg.v forwarding_unit.v hazard_unit.v id_ex_reg.v if1_if2_reg.v if_id_reg.v imem.v immgen.v mem_wb_reg.v perceptron_predictor.v pipeline_mode_ctrl_v2.v rf.v
+hierarchy -top cpu_morphable_top -keep_portwidths
+proc
+opt -keepdc
+memory -nomap
+techmap
+abc -lut 4
+ice40_opt
+write_json cpu_synth.json

@@ -41,7 +41,20 @@ module ex_mem_reg (
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset || flush) begin
+        if (reset) begin
+            // Initialize/flush to NOP state
+            mem_pc_plus_4    <= 32'b0;
+            mem_alu_result   <= 32'b0;
+            mem_rd2          <= 32'b0;
+            mem_rd           <= 5'b0;
+            
+            mem_mem_wr       <= 1'b0;
+            mem_mem_read     <= 1'b0;
+            mem_reg_write_en <= 1'b0;
+            mem_wb_sel       <= 2'b0;
+            mem_funct3       <= 3'b0;
+        end
+        else if (flush) begin
             // Initialize/flush to NOP state
             mem_pc_plus_4    <= 32'b0;
             mem_alu_result   <= 32'b0;

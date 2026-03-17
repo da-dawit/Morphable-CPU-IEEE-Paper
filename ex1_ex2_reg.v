@@ -61,7 +61,29 @@ module ex1_ex2_reg (
 );
 
     always @(posedge clk or posedge reset) begin
-        if (reset || flush) begin
+        if (reset) begin
+            ex2_pc           <= 32'b0;
+            ex2_pc_plus_4    <= 32'b0;
+            ex2_alu_partial  <= 32'b0;
+            ex2_operand_a    <= 32'b0;
+            ex2_operand_b    <= 32'b0;
+            ex2_rs1_val      <= 32'b0;
+            ex2_rs2_val      <= 32'b0;
+            ex2_imm          <= 32'b0;
+            ex2_rs1          <= 5'b0;
+            ex2_rs2          <= 5'b0;
+            ex2_rd           <= 5'b0;
+            ex2_alu_sel      <= 4'b0;
+            ex2_mem_wr       <= 1'b0;
+            ex2_mem_read     <= 1'b0;
+            ex2_reg_write_en <= 1'b0;
+            ex2_wb_sel       <= 2'b0;
+            ex2_is_branch    <= 1'b0;
+            ex2_is_jump      <= 1'b0;
+            ex2_funct3       <= 3'b0;
+            ex2_br_un        <= 1'b0;
+            ex2_valid        <= 1'b0;
+        end else if (flush) begin
             ex2_pc           <= 32'b0;
             ex2_pc_plus_4    <= 32'b0;
             ex2_alu_partial  <= 32'b0;
